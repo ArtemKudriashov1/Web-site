@@ -23,7 +23,7 @@ L = dict(locale="ru_RU", skip="К содержанию", nav_label="Главно
 IMG = dict(hero="/assets/img/img_5100.jpg", nature="/assets/img/img_4850.jpg", robotis="/assets/img/img_4972.jpg", robotis_hero="/assets/img/img_5101.jpg",
            wh1370="/assets/img/img_1370.jpg", wh1318="/assets/img/img_1318.jpg", bonded="/assets/img/img_9078.jpg", wh8290="/assets/img/img_8290.jpg",
            toyota="/assets/img/img_9780.jpg", toyota_off="/assets/img/img_9563.jpg", sbi="/assets/img/img_8435.jpg", griffin="/assets/img/img_7123.jpg",
-           service="/assets/img/img_5237.jpg", about="/assets/img/img_5303.jpg", portrait="/assets/img/portrait.jpg",
+           service="/assets/img/img_5237.jpg", hotel="/assets/img/hotel_bukhara.jpg", eventhall="/assets/img/eventhall_bukhara.jpg", about="/assets/img/img_5303.jpg", portrait="/assets/img/portrait.jpg",
            g1="/assets/img/img_5068.jpg", g2="/assets/img/img_5106.jpg", g3="/assets/img/img_5110.jpg", g4="/assets/img/img_5035.jpg", g5="/assets/img/img_5111.jpg")
 
 CHECK = '<svg viewBox="0 0 24 24" fill="none" stroke="#0F57D8" stroke-width="2.2" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg>'
@@ -91,7 +91,7 @@ SECTORS = [
       how="Начинаем с технологической схемы и логистики потоков, закладываем монтаж оборудования в график с первого дня, ведём единый реестр интерфейсов между строителями и поставщиками оборудования.",
       projects=["robotis", "wh25000", "bonded", "wh7500", "griffin", "magnit"],
       title="Строительство заводов и складов: управление проектом — KAPM", desc="Техзаказчик, управление проектом и контроль для промышленных и логистических объектов в Узбекистане: 115 000+ м² опыта."),
- dict(slug="hospitality", name="Гостиницы и HoReCa", photo=None,
+ dict(slug="hospitality", name="Гостиницы и HoReCa", photo="hotel",
       short="Отели международных брендов строятся по стандартам оператора, и мы знаем, как провести объект через их приёмку. Опыт: Hilton Garden Inn, Hyatt.",
       lead="Отель международного бренда принимает не заказчик, а оператор — по своим стандартам, со своими инспекциями и правом не открыть объект. KAPM знает эти стандарты изнутри и ведёт объект так, чтобы приёмка оператора прошла с первого раза.",
       points=["Бренд-стандарты оператора (Hilton, Hyatt и др.) определяют материалы, инженерию, безопасность и отделку — отклонения выявляются на инспекциях и останавливают открытие", "Инженерные системы отеля сложнее, чем в офисе или жилье: вентиляция номеров, пожарная безопасность, кухни, прачечные, слаботочные системы", "Сроки открытия привязаны к сезону и маркетингу оператора; сдвиг даты стоит дороже, чем в любом другом секторе", "Финансирование часто банковское — нужна отчётность в формате кредитора"],
@@ -102,8 +102,8 @@ SECTORS = [
 # проекты: key -> dict; sector keys: ind, hosp, office, resid, eng; country: uz, kz, ru, cy, tr
 PROJECTS = {
  "robotis": dict(name="Завод по производству робототехники в Ташкенте", place="Ташкент", sector="ind", sec_label="Промышленность", country="uz", role="Представитель заказчика", num="22 000", unit="м²", photo="robotis", kapm=True, page=True),
- "hotel": dict(name="Отель международного бренда, 212 номеров", place="Бухара", sector="hosp", sec_label="Гостиницы", country="uz", role="Строительный контроль заказчика", num="20 700", unit="м²", photo=None, kapm=True),
- "eventhall": dict(name="Event Hall Бухара", place="Бухара", sector="hosp", sec_label="Гостиницы", country="uz", role="Строительный контроль заказчика", num=None, photo=None, kapm=True),
+ "hotel": dict(name="Отель международного бренда, 212 номеров", place="Бухара", sector="hosp", sec_label="Гостиницы", country="uz", role="Строительный контроль заказчика", num="20 700", unit="м²", photo="hotel", kapm=True),
+ "eventhall": dict(name="Event Hall Бухара", place="Бухара", sector="hosp", sec_label="Гостиницы", country="uz", role="Строительный контроль заказчика", num=None, photo="eventhall", kapm=True),
  "toyota": dict(name="Toyota Motors Central Asia / Toyota Academy", place="Ташкент", sector="office", sec_label="Офисы", country="uz", role="Управление проектом", num="2 500", unit="м²", photo="toyota", kapm=True),
  "sbi": dict(name="SBI Group: офис, торговая зона Uzum + Ucell, капремонт офиса", place="Ташкент", sector="office", sec_label="Офисы, ритейл", country="uz", role="Управление и производство работ", num=None, photo="sbi", kapm=True),
  "wh25000": dict(name="Склад с монтажом промышленного оборудования", place="Ташкент", sector="ind", sec_label="Логистика", country="uz", role="Технический заказчик", num="25 000", unit="м²", photo="wh1318", kapm=True),
