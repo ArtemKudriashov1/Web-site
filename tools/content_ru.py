@@ -128,6 +128,12 @@ INSIGHTS = [
  dict(d="Октябрь 2026", h="Склад класса A: требования к полам, кровле и инженерии", p="Что нужно заложить в договор с подрядчиком, чтобы склад приняли арендатор и оператор."),
  dict(d="Сентябрь 2026", h="Где теряются деньги на стройке: шесть типовых завышений в актах", p="Разбор реальных актов: объёмы, коэффициенты, материалы и «дополнительные» работы.")]
 
+# Опубликованные материалы (новые — сверху)
+ARTICLES = [
+ dict(slug="real-estate-equation-tashkent-2026", d="Ноябрь 2026", date="2026-11-26",
+      h="Real Estate Equation: Tashkent 2026 — переменная, которую контролирует инвестор",
+      p="Итоги инвестиционного брифинга о рынке недвижимости Ташкента: почему маржа девелопера всё больше решается в управлении проектом.")]
+
 ORG_LD = {"@context": "https://schema.org", "@type": "ProfessionalService", "name": "KAPM", "legalName": "ООО «KAPM»", "url": "https://kapm.uz", "logo": "https://kapm.uz/assets/logo/kapm-logo-primary.svg",
           "description": "Независимое управление строительством на стороне заказчика в Узбекистане: технический заказчик, управление проектом, строительный контроль, контроль стоимости.",
           "telephone": "+998910040152", "email": "ceo@acre.estate", "address": {"@type": "PostalAddress", "streetAddress": "1-й проезд Дархан, 7", "addressLocality": "Ташкент", "addressCountry": "UZ"},
@@ -213,7 +219,7 @@ def home():
 
 <section class="sec" style="padding-top:0" id="insights"><div class="wrap">
 <div class="sec-h"><div class="t"><div class="eyebrow">Экспертиза</div><h2>Что спрашивают инвесторы перед стройкой</h2></div><a class="more" href="/insights/">Все материалы →</a></div>
-<div class="grid3">{"".join(f'<a class="ins" href="/insights/"><span class="d">{i["d"]}</span><h3>{i["h"]}</h3><p>{i["p"]}</p></a>' for i in INSIGHTS)}</div>
+<div class="grid3">{"".join(f'<a class="ins" href="/insights/{a["slug"]}/"><span class="d">{a["d"]}</span><h3>{a["h"]}</h3><p>{a["p"]}</p></a>' for a in ARTICLES)}{"".join(f'<a class="ins" href="/insights/"><span class="d">{i["d"]}</span><h3>{i["h"]}</h3><p>{i["p"]}</p></a>' for i in INSIGHTS[:max(0, 3 - len(ARTICLES))])}</div>
 </div></section>'''
     return dict(path="/", nav="", title="KAPM — технический заказчик и управление строительством, Ташкент",
                 desc="Независимое управление строительством на стороне заказчика в Узбекистане: технический заказчик, строительный контроль, контроль стоимости. Ответ в течение рабочего дня.",
@@ -337,9 +343,48 @@ def about():
 
 def insights():
     body = f'''<section class="pagehead"><div class="wrap"><nav class="crumbs" aria-label="Хлебные крошки"><a href="/">Главная</a><span>/</span><span>Экспертиза</span></nav><div class="eyebrow">Экспертиза</div><h1>Что спрашивают инвесторы перед стройкой</h1><p class="lead" style="max-width:820px">Разбираем вопросы, которые инвесторы и заказчики задают перед стартом и во время строительства в Узбекистане: сколько стоит, сколько длится, кто за что отвечает и где теряются деньги.</p></div></section>
-<section class="sec"><div class="wrap"><div class="grid3">{"".join(f'<div class="ins"><span class="d">{i["d"]} · готовится к публикации</span><h3>{i["h"]}</h3><p>{i["p"]}</p></div>' for i in INSIGHTS)}</div>
-<p class="muted" style="margin-top:48px;max-width:720px">Первые материалы выйдут в ближайшие недели. Если у вас есть вопрос, на который вы не нашли ответа, — напишите нам, и мы ответим лично, а тему возьмём в работу.</p></div></section>'''
+<section class="sec"><div class="wrap"><div class="grid3">{"".join(f'<a class="ins" href="/insights/{a["slug"]}/"><span class="d">{a["d"]}</span><h3>{a["h"]}</h3><p>{a["p"]}</p></a>' for a in ARTICLES)}{"".join(f'<div class="ins"><span class="d">{i["d"]} · готовится к публикации</span><h3>{i["h"]}</h3><p>{i["p"]}</p></div>' for i in INSIGHTS)}</div>
+<p class="muted" style="margin-top:48px;max-width:720px">Следующие материалы выйдут в ближайшие недели. Если у вас есть вопрос, на который вы не нашли ответа, — напишите нам, и мы ответим лично, а тему возьмём в работу.</p></div></section>'''
     return dict(path="/insights/", nav="insights", title="Экспертиза KAPM — статьи о строительстве в Узбекистане", desc="Экспертные материалы для инвесторов и заказчиков: технический заказчик, разрешение на строительство, проверка актов, склады класса A, отели под брендом.", body=body)
+
+def article_ree2026():
+    a = ARTICLES[0]
+    img = "/assets/img/artem-kudryashov-real-estate-equation-tashkent-2026.jpg"
+    alt = "Артём Кудряшов, генеральный директор KAPM, на Real Estate Equation: Tashkent 2026, InterContinental Tashkent"
+    body = f'''<section class="pagehead"><div class="wrap"><nav class="crumbs" aria-label="Хлебные крошки"><a href="/">Главная</a><span>/</span><a href="/insights/">Экспертиза</a><span>/</span><span>Real Estate Equation: Tashkent 2026</span></nav><div class="eyebrow">Событие · 24 ноября 2026</div><h1>{a["h"]}</h1></div></section>
+<section class="sec"><div class="wrap split split-4">
+<aside class="stack" style="gap:24px"><figure style="margin:0">{ph(img, alt, 560)}<figcaption class="muted" style="font-size:13px;margin-top:10px">Артём Кудряшов на Real Estate Equation: Tashkent 2026</figcaption></figure>
+<div class="sub"><span class="ftr-h">УСЛУГИ KAPM</span><a href="/services/technical-customer/">Технический заказчик →</a><a href="/services/project-management/">Управление проектом и строительством →</a><a href="/services/construction-supervision/">Строительный контроль и технадзор →</a><a href="/services/cost-management/">Контроль стоимости →</a></div></aside>
+<article class="prose">
+<p class="lead">24 ноября 2026 года генеральный директор KAPM Артём Кудряшов участвовал в Real Estate Equation: Tashkent 2026. Это инвестиционный брифинг о рынке недвижимости Ташкента в отеле InterContinental Tashkent. Организаторы — SavvY, Knight Frank MENA и Европейско-узбекская ассоциация экономического сотрудничества EUROUZ.</p>
+<h2>О чём шла речь</h2>
+<div>{li(["экономика девелопмента в Ташкенте;", "развитие регуляторной среды Узбекистана для девелопмента;", "опыт региональных и международных рынков;", "финансирование и стратегии входа в проекты."])}</div>
+<h2>Наш вывод</h2>
+<p>В уравнении доходности у девелопера есть переменные, которые задаёт рынок: цена продажи и ставка аренды. А есть те, что зависят от управления проектом: стоимость строительства, срок ввода и качество продукта. Именно в них сейчас решается маржа.</p>
+<p><b>Девелопмент становится сложнее.</b> Рынок недвижимости Узбекистана развивается, а процессы девелопмента усложняются. Чтобы проект состоялся, нужно проработанное видение ещё до старта и понимание локального нарратива: как здесь устроены разрешения, подрядчики и спрос.</p>
+<p><b>ESG начинается с технического задания.</b> Требования к энергоэффективности и материалам дёшево заложить в ТЗ на проектирование и дорого добавлять на стройке.</p>
+<p><b>Иностранному капиталу нужен представитель на площадке.</b> Интерес международных инвесторов к Ташкенту растёт. Этим инвесторам нужен человек на объекте, который отвечает за то, чтобы вложенные деньги превращались в построенные метры по плану.</p>
+<h2>Благодарность</h2>
+<p>Благодарим SavvY, Knight Frank MENA и EUROUZ за организацию брифинга, а Мариам Коява — за приглашение. Спасибо спикерам и участникам за открытый разговор о будущем рынка недвижимости Ташкента. Такие встречи помогают девелоперам, инвесторам и консультантам говорить на одном языке.</p>
+<h2>Чем занимается KAPM</h2>
+<p>KAPM — технический заказчик и представитель инвестора (Owner's Representative) в Узбекистане. Мы ведём проекты от проверки участка до ввода в эксплуатацию: <a href="/services/technical-customer/">технический заказчик</a>, <a href="/services/project-management/">управление проектами и строительством</a>, <a href="/services/construction-supervision/">строительный контроль и технадзор</a>, <a href="/services/cost-management/">контроль стоимости</a>.</p>
+<p>Заходите в проект в Ташкенте? <a href="/contact/">Напишите нам</a>, и мы покажем, как выстроить управление под ваш объект.</p>
+</article></div></section>'''
+    url = f'{SITE["site"]}/insights/{a["slug"]}/'
+    ld = [{"@context": "https://schema.org", "@type": "BlogPosting", "headline": a["h"], "description": a["p"], "inLanguage": "ru",
+           "datePublished": a["date"], "dateModified": a["date"], "mainEntityOfPage": url, "image": SITE["site"] + img,
+           "author": {"@type": "Person", "name": "Артём Кудряшов", "jobTitle": "Генеральный директор KAPM", "url": SITE["site"] + "/about/#leadership", "sameAs": [SITE["linkedin"]]},
+           "publisher": {"@type": "Organization", "name": "KAPM", "url": SITE["site"], "logo": {"@type": "ImageObject", "url": SITE["site"] + "/assets/logo/kapm-logo-primary.svg"}},
+           "about": {"@type": "Event", "name": "Real Estate Equation: Tashkent 2026", "startDate": "2026-11-24",
+                     "location": {"@type": "Place", "name": "InterContinental Tashkent", "address": {"@type": "PostalAddress", "addressLocality": "Ташкент", "addressCountry": "UZ"}},
+                     "organizer": [{"@type": "Organization", "name": "SavvY"}, {"@type": "Organization", "name": "Knight Frank MENA"}, {"@type": "Organization", "name": "EUROUZ"}]}},
+          {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [
+           {"@type": "ListItem", "position": 1, "name": "Главная", "item": SITE["site"] + "/"},
+           {"@type": "ListItem", "position": 2, "name": "Экспертиза", "item": SITE["site"] + "/insights/"},
+           {"@type": "ListItem", "position": 3, "name": "Real Estate Equation: Tashkent 2026", "item": url}]}]
+    return dict(path=f'/insights/{a["slug"]}/', nav="insights", title="Real Estate Equation: Tashkent 2026 — взгляд технического заказчика | KAPM",
+                desc="KAPM на Real Estate Equation: Tashkent 2026. Почему доходность девелопмента в Ташкенте всё больше зависит от управления проектом: бюджета, сроков и качества.",
+                body=body, ld=ld, og_type="article", og_img="/assets/img/og-real-estate-equation-tashkent-2026.jpg")
 
 def contact():
     body = f'''
@@ -381,5 +426,5 @@ def privacy():
     return dict(path="/privacy/", nav="", title="Политика конфиденциальности — KAPM", desc="Какие данные собирает сайт KAPM и как они используются.", body=body, nocta=True)
 
 def pages():
-    out = [home(), services_index()] + [service_page(s) for s in SERVICES] + [sectors_index()] + [sector_page(s) for s in SECTORS] + [projects_index(), project_robotis(), about(), insights(), contact(), privacy()]
+    out = [home(), services_index()] + [service_page(s) for s in SERVICES] + [sectors_index()] + [sector_page(s) for s in SECTORS] + [projects_index(), project_robotis(), about(), insights(), article_ree2026(), contact(), privacy()]
     return out
