@@ -35,7 +35,7 @@ def page(lang, L, c, p):
     canon = f'{c["site"]}{prefix}{p["path"]}'
     ld = p.get("ld") or []
     ldjson = "".join(f'<script type="application/ld+json">{json.dumps(x, ensure_ascii=False)}</script>' for x in ld)
-    og_img = c["site"] + "/assets/img/og.jpg"
+    og_img = c["site"] + p.get("og_img", "/assets/img/og.jpg")
     foot_services = "".join(f'<a href="{u(h)}">{t}</a>' for h, t in L["foot_services"])
     foot_company = "".join(f'<a href="{u(h)}">{t}</a>' for h, t in L["foot_company"])
     return f'''<!doctype html>
@@ -47,7 +47,7 @@ def page(lang, L, c, p):
 <meta name="description" content="{html.escape(p["desc"])}">
 <link rel="canonical" href="{canon}">
 {alts}
-<meta property="og:type" content="website"><meta property="og:site_name" content="KAPM"><meta property="og:title" content="{html.escape(p["title"])}"><meta property="og:description" content="{html.escape(p["desc"])}"><meta property="og:url" content="{canon}"><meta property="og:image" content="{og_img}"><meta property="og:locale" content="{L["locale"]}">
+<meta property="og:type" content="{p.get("og_type", "website")}"><meta property="og:site_name" content="KAPM"><meta property="og:title" content="{html.escape(p["title"])}"><meta property="og:description" content="{html.escape(p["desc"])}"><meta property="og:url" content="{canon}"><meta property="og:image" content="{og_img}"><meta property="og:locale" content="{L["locale"]}">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="/favicon/favicon.svg" type="image/svg+xml"><link rel="manifest" href="/favicon/site.webmanifest"><meta name="theme-color" content="#0A1F44">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
